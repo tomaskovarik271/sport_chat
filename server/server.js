@@ -24,11 +24,10 @@ app.get('/', async (req, res) => {
 app.post('/', async (req, res) => {
   try {
     const prompt = req.body.prompt;
-    const fixedString = "You are a professional trainer. My name is Martin, 41 years, 205 cm height, 105 kg weight. I want to improve my endurance. Generate professional training plan for one week.";
-
+    
     const response = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: `${fixedString} ${prompt}`,
+      prompt: `${prompt}`,
       temperature: 0, // Higher values means the model will take more risks.
       max_tokens: 1000, // The maximum number of tokens to generate in the completion. Most models have a context length of 2048 tokens (except for the newest models, which support 4096).
       top_p: 1, // alternative to sampling with temperature, called nucleus sampling
